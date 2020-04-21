@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-Us">
+
+<head>
+    <title>Psychic game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <h1>The Psychic Game</h1>
+    <p>Guess what letter I'm thinking of.</p>
+
+    <p id="Wins">Wins:</p>
+
+    <p id="Losses">Losses:</p>
+
+    <p id="Guess">Guesses left:</p>
+
+    <p id="soFar">Guesses so far:</p>
+    <script>
+
+        // This will record the wins.
+        var win = 0;
+        // This will record the losses.
+        var lose = 0;
+        // This will show the guesses that are left.
+        var guesses = 9;
+        // This will show the guesses that have been made so far.
+        var guessesSoFar = document.getElementById("soFar");
+        var guess = onkeyup
+
+        // Creating a function to update the wins / losses / guesses.
+
+        function updateWin() {
+            document.querySelector("#Wins").innerHTML = "Wins: " + win;
+        }
+
+        function updateLoss() {
+            document.querySelector("#Losses").innerHTML = "Losses: " + lose;
+        }
+
+        function updateGuess() {
+            document.querySelector("#Guess").innerHTML = "Guesses left: " + guesses;
+        }
+
+        // Calling the functions created.
+
+        updateWin();
+        updateLoss();
+        updateGuess();
+
+        // Creating an if statement to increase wins if the win is true. Else then guesses decrease. 
+        if (win === true) {
+            win++;
+        } else {
+            guesses--;
+        }
+        if (lose === true) {
+            lose++;
+        }
+
+        document.onkeyup = function (event) {
+            var userInput = event.key
+            
+
+        }
+    </script>
+
+
+
+
+
+</body>
+
+
+</html>
