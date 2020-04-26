@@ -5,20 +5,33 @@
     <title>Psychic game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
 <body>
-    <h1>The Psychic Game</h1>
-    <p>Guess what letter I'm thinking of.</p>
+    <div class="container">
+        <div class="row">
+            <section class="col-md-12">
+                <h1 class="col-md-12" style="text-align: center;">The Psychic Game</h1>
+            </section>
+        </div>
+        <div class="row">
+            <section class="col-md-12">
+                <p class="col-md-12" style="text-align: center;">Guess what letter I'm thinking of.</p>
+            </section>
+        </div>
+        <div class="row">
+            <p id="Wins" class="col-md-4">Wins:</p>
 
-    <p id="Wins">Wins:</p>
+            <p id="Losses" class="col-md-4">Losses:</p>
 
-    <p id="Losses">Losses:</p>
-
-    <p id="Guess">Guesses left:</p>
-
-    <p id="soFar">Guesses so far:</p>
+            <p id="Guess" class="col-md-4">Guesses left:</p>
+        </div>
+        <div class="row" style="text-align: center;">
+            <p id="soFar" class="col">Guesses so far:</p>
+        </div>
+    </div>
 
     <script>
         var characters = ["a",
@@ -46,29 +59,29 @@
             "x",
             "y",
             "z"];
-       
+
         // This will record the wins.
-        
+
         var wins = 0;
-        
+
         // This will record the losses.
-       
+
         var losses = 0;
-       
+
         // This will show the guesses that are left.
-        
+
         var guesses = 9;
-        
+
         var guessesLeft = 9;
-        
+
         // This will show the guesses that have been made so far.
-        
+
         var guessesSoFar = document.getElementById("soFar");
-        
+
         var computerGuess;
-        
+
         guessesSoFar.textContent = "Guesses so far:";
-        
+
         // Creating a function to update the wins / losses / guesses.
 
         var updateWin = function () {
@@ -86,12 +99,12 @@
 
         // Found this solution here : https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
 
-        var createComputerGuess = function() {
+        var createComputerGuess = function () {
             computerGuess = characters[Math.floor(Math.random() * characters.length)];
             console.log(computerGuess);
         };
 
-        
+
         var gameOver = function () {
             guesses = 9;
             guessesLeft = 9;
@@ -130,16 +143,7 @@
         updateWin();
         updateLoss();
         updateGuess();
-        
-
-
-
     </script>
-
-
-
-
-
 </body>
 
 
