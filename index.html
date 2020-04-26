@@ -17,7 +17,8 @@
 
     <p id="Guess">Guesses left:</p>
 
-    <p id="soFar">Guesses so far:</p>
+    <p id="soFar">Guesses so far: </p>
+    
     <script>
 
         // This will record the wins.
@@ -29,7 +30,7 @@
         // This will show the guesses that have been made so far.
         var guessesSoFar = document.getElementById("soFar");
         var guess = onkeyup
-
+        var solution = makeid(length)
         // Creating a function to update the wins / losses / guesses.
 
         function updateWin() {
@@ -44,27 +45,60 @@
             document.querySelector("#Guess").innerHTML = "Guesses left: " + guesses;
         }
 
+
+
+
         // Calling the functions created.
 
         updateWin();
         updateLoss();
         updateGuess();
 
-        // Creating an if statement to increase wins if the win is true. Else then guesses decrease. 
-        if (win === true) {
+        // Creating an if statement to increase wins if the win is true. Else then guesses decrease.
+        if (guessesSoFar === makeid()) {
             win++;
         } else {
             guesses--;
         }
+        
         if (lose === true) {
             lose++;
             guesses = 9;
         }
 
+
+        guessesSoFar.textContent = "Guesses so far:";
+
         document.onkeyup = function (event) {
-            var userInput = event.key
-            
+            var userInput = event.key;
+
+            guessesSoFar.textContent += " " + userInput + ",";
+
         }
+
+        // Found this solution here : https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
+
+        function makeid(length) {
+            var result = '';
+
+            var characters = 'abcdefghijklmnopqrstuvwxyz';
+
+            var charactersLength = characters.length;
+
+            for (var i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+
+            return result;
+            
+        };
+
+
+        console.log(makeid(1))
+
+
+
+
     </script>
 
 
