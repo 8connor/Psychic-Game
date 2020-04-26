@@ -17,32 +17,58 @@
 
     <p id="Guess">Guesses left:</p>
 
-    <p id="soFar">Guesses so far: </p>
-    
-    <script>
+    <p id="soFar">Guesses so far:</p>
 
+    <script>
+        var characters = ["a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h",
+            "i",
+            "j",
+            "k",
+            "l",
+            "m",
+            "n",
+            "o",
+            "p",
+            "q",
+            "r",
+            "s",
+            "t",
+            "u",
+            "v",
+            "x",
+            "y",
+            "z"];
         // This will record the wins.
-        var win = 0;
+        var wins = 0;
         // This will record the losses.
-        var lose = 0;
+        var losses = 0;
         // This will show the guesses that are left.
         var guesses = 9;
+        var guessesLeft = 9;
         // This will show the guesses that have been made so far.
         var guessesSoFar = document.getElementById("soFar");
-        var guess = onkeyup
-        var solution = makeid(length)
+        var computerGuess;
+        // var guess = onkeyup
+        // var solution = computerGuess
         // Creating a function to update the wins / losses / guesses.
 
-        function updateWin() {
-            document.querySelector("#Wins").innerHTML = "Wins: " + win;
+        var updateWin = function () {
+            document.querySelector("#Wins").innerHTML = "Wins: " + wins;
         }
 
-        function updateLoss() {
-            document.querySelector("#Losses").innerHTML = "Losses: " + lose;
+        var updateLoss = function () {
+            document.querySelector("#Losses").innerHTML = "Losses: " + losses;
         }
 
-        function updateGuess() {
-            document.querySelector("#Guess").innerHTML = "Guesses left: " + guesses;
+        var updateGuess = function () {
+            document.querySelector("#Guess").innerHTML = "Guesses left: " + guessesLeft;
         }
 
 
@@ -50,52 +76,57 @@
 
         // Calling the functions created.
 
-        updateWin();
-        updateLoss();
-        updateGuess();
 
         // Creating an if statement to increase wins if the win is true. Else then guesses decrease.
-        if (guessesSoFar === makeid()) {
-            win++;
-        } else {
-            guesses--;
-        }
-        
-        if (lose === true) {
-            lose++;
-            guesses = 9;
-        }
 
-
-        guessesSoFar.textContent = "Guesses so far:";
-
-        document.onkeyup = function (event) {
-            var userInput = event.key;
-
-            guessesSoFar.textContent += " " + userInput + ",";
-
-        }
 
         // Found this solution here : https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
 
-        function makeid(length) {
-            var result = '';
-
-            var characters = 'abcdefghijklmnopqrstuvwxyz';
-
-            var charactersLength = characters.length;
-
-            for (var i = 0; i < length; i++) {
-                result += characters.charAt(Math.floor(Math.random() * charactersLength));
-            }
-
-            return result;
-            
+        var createComputerGuess = function() {
+            computerGuess = characters[Math.floor(Math.random() * characters.length)];
+            console.log(computerGuess);
         };
 
+        guessesSoFar.textContent = "Guesses so far:";
+        var gameOver = function () {
+            guesses = 9;
+            guessesLeft = 9;
+            updateWin();
+            createComputerGuess();
+            updateLoss();
+            updateGuess();
+        }
 
-        console.log(makeid(1))
+        document.onkeyup = function (event) {
+            var userInput = event.key.toString();
+            guessesLeft--;
+            updateGuess();
 
+
+            if (guessesLeft > 0) {
+                if (userInput === computerGuess) {
+                    wins++;
+                    document.getElementById("Wins").innerHTML = "Wins:" + wins;
+                    gameOver();
+                }
+            } else if (guessesLeft === 0) {
+                losses++;
+                document.getElementById("Losses").innerHTML = "Losses:" + losses;
+                gameOver();
+            }
+            console.log(userInput)
+            guessesSoFar.textContent += " " + userInput + ",";
+        }
+
+
+
+
+
+        createComputerGuess();
+        updateWin();
+        updateLoss();
+        updateGuess();
+        
 
 
 
